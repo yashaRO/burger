@@ -1,0 +1,47 @@
+<div class='container'>
+	<div class='row'>
+		<center>
+			WELCOME TO BURGER
+		</center>
+	</div>
+	<br><br><br>
+	<div class='row'>
+		<div class='col-lg-1 col-md-1'></div>
+		
+		<div class='col-lg-5 col-md-5'>
+			<ul>
+				{{#each burger}}
+					{{#unless devoured}}
+						<li>
+							<img src='http://www.jqueryscript.net/images/Simplest-Responsive-jQuery-Image-Lightbox-Plugin-simple-lightbox.jpg'/>
+							
+							{{> devour}}
+							<br>
+							{{this.burger_name}}
+						</li>
+						<br>
+					{{/unless}}
+				{{/each}}
+			</ul>
+		</div>
+		
+		<div class='col-lg-1 col-md-1'></div>
+		
+		<div class='col-lg-4 col-md-4'>
+			<ol>
+			</ol>
+		</div>
+		
+		<div class='col-lg-1 col-md-1'></div>
+	</div>
+		
+	<div class='row'>
+		<center class='submission'>
+		<form action='/' method='post'>
+			<textarea maxlength='50'></textarea>
+			<br>
+			<input type='submit'>
+		</form>
+		</center>
+	</div>
+</div>

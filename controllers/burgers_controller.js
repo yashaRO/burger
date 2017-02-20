@@ -9,20 +9,19 @@ router.get('/', function(req, res) {
 })
 
 router.post('/', function(req, res) {
-	burgers.insert(
-		'burgers',
+	burgers.create(
 		'burger_name',
-		[req.body.burgerName]
+		[req.body.burgerName],
+		function(result) {console.log(result)}
 	)
 	res.redirect('/')
 })
 
 router.put('/:id', function(req, res) {
 	burgers.update(
-		'burgers',
-		'devoured',
-		
-		function(data) {
-		
+		{'burger_name': req.body.burgerName},
+		req.params.id,
+		function(result) {
+		console.log(result)
 	})
 })

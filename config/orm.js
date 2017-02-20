@@ -12,25 +12,36 @@ function insertFormatting(arr) {
 	return c
 }
 
+function sqlSet(ob) {
+	
+	var arr = [];
+	
+	for(var key in ob) {
+		if (Object.hasOwnProperty.call(ob,key)) {
+			arr.push(key + ' = ' + (typeof ob[key] == 'string' ? "'" + ob[key] + "'" : ob[key]))
+		}
+	}
+	return arr.toString()
+}
+
 orm = {
   all: function(table, cb){
     connection.query(`SELECT * FROM ${table};`, function(err, result) {
       if (err) throw err;
-      else {console.log(result);}
+			cb(result)
     })
-		cb()
   },
   insert: function(table, cols, values, cb){
     connection.query(`INSERT INTO ${table} (${cols.toString()}) VALUES ${insertFormatting(values)};`, function(err, result) {
       //Expects full values, with null being in place of auto generated values. Duh
       if (err) throw err;
-      else {console.log(result);}
+			cb(result)
     })
   },
-  update: function(table, firstKey, firstValue, whereKey, whereValue, cb){
-    connection.query(`UPDATE ${table} SET ${firstKey} = ${firstValue} WHERE ${whereKey} = ${whereValue};`, function(err, result) {
+  update: function(table, setArgs, whereKey, whereValue, cb){
+    connection.query(`UPDATE ${table} SET ${setSql(setArgs)} WHERE ${whereKey} = ${whereValue};`, function(err, result) {
       if (err) throw err;
-      else {console.log(result);}
+			cb(result)
     })
   }
 }

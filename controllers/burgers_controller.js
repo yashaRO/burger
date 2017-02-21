@@ -1,5 +1,5 @@
 var express = require('express')
-var burgers = requre('../models/cat.js')
+var burgers = require('../models/burger.js')
 var router = express.Router()
 
 router.get('/', function(req, res) {
@@ -10,18 +10,19 @@ router.get('/', function(req, res) {
 
 router.post('/', function(req, res) {
 	burgers.create(
-		'burger_name',
 		[req.body.burgerName],
 		function(result) {console.log(result)}
 	)
-	res.redirect('/')
+	res.redirect('/');
 })
 
 router.put('/:id', function(req, res) {
 	burgers.update(
-		{'burger_name': req.body.burgerName},
+		{devoured: true},
 		req.params.id,
-		function(result) {
-		console.log(result)
-	})
+		function(result) {console.log(result)}
+	)
+	res.redirect('/');
 })
+
+module.exports = router;

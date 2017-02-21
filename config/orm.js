@@ -2,17 +2,17 @@ var connection = require('./connection')
 
 function insertFormatting(arr) {
 	c = '('
-	for(let i =0; i < dave.length; i++) {
-		if (typeof dave[i] == 'string')
-			{c += '"' + dave[i] + '",'; continue;}
-		c += dave[i] +','
+	for(let i =0; i < arr.length; i++) {
+		if (typeof arr[i] == 'string')
+			{c += '"' + arr[i] + '",'; continue;}
+		c += arr[i] +','
 	}
 	c = c.replace(/,$/,'')
 	c += ')'
 	return c
 }
 
-function sqlSet(ob) {
+function setSql(ob) {
 	
 	var arr = [];
 	

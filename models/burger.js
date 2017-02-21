@@ -6,13 +6,13 @@ var burgers = {
 			cb(res)
 		})
 	},
-	create: function(cols, values, cb) {
-		orm.insert('burgers', cols, values, function(res) {
+	create: function(values, cb) {
+		orm.insert('burgers', ['burger_name'], values, function(res) {
 			cb(res)
 		})
 	},
-	update: function(setArgs, whereKey, whereValues, cb) {
-		orm.update('burgers', setArgs, 'devoured', whereValues, function(res) {
+	update: function(setArgs, whereValues, cb) {
+		orm.update('burgers', setArgs, 'id', whereValues, function(res) {
 			cb(res)
 		})
 	}

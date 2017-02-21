@@ -10,9 +10,10 @@
 		
 		<div class='col-lg-5 col-md-5'>
 			<ul>
-				{{#each burger}}
-					{{#unless devoured}}
+				{{#each burgers}}
+					{{#unless this.devoured}}
 						<li>
+							<!--Why this pic? No idea. I like it though-->
 							<img src='http://www.jqueryscript.net/images/Simplest-Responsive-jQuery-Image-Lightbox-Plugin-simple-lightbox.jpg'/>
 							
 							{{> devour}}
@@ -29,6 +30,11 @@
 		
 		<div class='col-lg-4 col-md-4'>
 			<ol>
+				{{#each burgers}}
+					{{#if this.devoured}}
+						<li>{{this.burger_name}}</li>
+					{{/if}}
+				{{/each}}
 			</ol>
 		</div>
 		
@@ -37,10 +43,10 @@
 		
 	<div class='row'>
 		<center class='submission'>
-		<form action='/' method='post'>
-			<textarea maxlength='50'></textarea>
+		<form action='/' method='POST'>
+			<input maxlength='50' name='burgerName'>
 			<br>
-			<input type='submit'>
+			<button type='submit'>Submit!</button>
 		</form>
 		</center>
 	</div>
